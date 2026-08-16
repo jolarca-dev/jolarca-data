@@ -13,7 +13,9 @@ project_dir = warehouse
 profiles_dir = warehouse
 
 [sqlfluff:indentation]
-tab_space_size = 2
+# Models are written with 4-space indents (dbt convention in this repo);
+# keep the linter aligned with the code, not the other way round.
+tab_space_size = 4
 
 [sqlfluff:rules:capitalisation.keywords]
 capitalisation_policy = lower

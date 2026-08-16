@@ -11,10 +11,7 @@ select
     buyer_key,
     seller_key,
     status,
-    case
-        when status in ('paid', 'shipped', 'delivered') then true
-        else false
-    end as is_revenue,
+    status in ('paid', 'shipped', 'delivered') as is_revenue,
     amount_eur,
     currency,
     round(amount_eur * vat_rate_pct / 100.0, 2) as vat_amount_eur,

@@ -10,7 +10,7 @@ with lifecycle as (
 select
     seller_key,
     country_code,
-    {{ locale_name('country_code') }} as locale,
+    {{ locale_name('country_code') }} as locale_name,
     joined_at::date as joined_date,
     order_count,
     lifetime_gmv_eur,

@@ -9,13 +9,13 @@ with buyers as (
 )
 
 select
-    date_trunc('month', created_at)::date as cohort_month,
     country_code,
+    date_trunc('month', created_at)::date as cohort_month,
     count(*) as accounts_in_cohort,
     count(*) filter (where consent_marketing) as opted_in,
     round(
         count(*) filter (where consent_marketing)::numeric
-            / nullif(count(*), 0),
+        / nullif(count(*), 0),
         4
     ) as consent_rate
 from buyers

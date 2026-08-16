@@ -13,7 +13,7 @@ select
     products.price_eur,
     products.currency,
     products.status,
-    products.status = 'active' as is_active,
+    products.created_at,
     products.created_at::date as listed_date,
-    products.created_at
+    products.status = 'active' as is_active
 from products
