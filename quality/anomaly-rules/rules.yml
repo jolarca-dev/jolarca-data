@@ -1,0 +1,26 @@
+# Anomaly rules — volume/distribution detection per critical table.
+# A triggered rule blocks the consumer refresh and notifies the owner
+# (data-quality workflow). Thresholds are deliberately conservative at
+# scaffold — tune after two weeks of baseline volume.
+schema_version: 1
+rules:
+  - table: raw.orders
+    metric: daily_row_count
+    kind: volume
+    condition: "drop_gt: 50% vs trailing 7-day median"
+    owner: data-platform
+  - table: raw.orders
+    metric: refunded_share
+    kind: distribution
+    condition: "gt: 0.20"
+    owner: marketplace-product
+  - table: fct_vat_oss
+    metric: quarterly_net_amount_eur
+    kind: volume
+    condition: "swing_gt: 60% vs prior quarter"
+    owner: finance
+  - table: consent_rates
+    metric: consent_rate
+    kind: distribution
+    condition: "swing_gt: 0.15 vs trailing 4-week mean"
+    owner: dpo

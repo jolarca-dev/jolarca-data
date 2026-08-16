@@ -1,0 +1,29 @@
+# Parcel-locker location refs (Omniva/DPD). Location codes are stable
+# refs; live availability comes from carrier APIs at runtime.
+schema_version: 1
+lockers:
+  - code: SYN-OMN-LT-VNO-01
+    provider: omniva
+    country: LT
+    municipality: LT-VNO
+    locality: synthetic-locality-a
+  - code: SYN-OMN-LT-KAU-01
+    provider: omniva
+    country: LT
+    municipality: LT-KAU
+    locality: synthetic-locality-b
+  - code: SYN-DPD-LV-RIX-01
+    provider: dpd
+    country: LV
+    municipality: LV-RIX
+    locality: synthetic-locality-c
+  - code: SYN-OMN-EE-303-01
+    provider: omniva
+    country: EE
+    municipality: EE-303
+    locality: synthetic-locality-d
+  - code: SYN-DPD-EE-784-01
+    provider: dpd
+    country: EE
+    municipality: EE-784
+    locality: synthetic-locality-e

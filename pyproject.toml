@@ -1,0 +1,29 @@
+# Tool configuration for the data repository.
+# dbt / sqlfluff / great-expectations are the warehouse toolchain; the
+# scripts under scripts/ are the governance gates. Versions are pinned
+# ranges — bump via dependabot review, never ad hoc.
+
+[project]
+name = "jol-m-data-tooling"
+version = "0.1.0"
+description = "Data platform tooling: dbt warehouse, sqlfluff, data quality, seed validators, governance gates."
+requires-python = ">=3.11"
+dependencies = [
+    "pre-commit>=3.8",
+    "yamllint>=1.35",
+    "pyyaml>=6.0",
+    "jsonschema>=4.23",
+    "dbt-core>=1.8",
+    "dbt-postgres>=1.8",
+    "sqlfluff>=3.2",
+    "sqlfluff-templater-dbt>=3.2",
+    "great-expectations>=0.18",
+]
+
+[project.optional-dependencies]
+synthetic = ["faker>=28.0"]
+
+[tool.codespell]
+# Spelling hygiene; marketplace/taxonomy terms whitelisted below.
+skip = "*.pdf,.idea,.venv,warehouse/target,warehouse/dbt_packages"
+ignore-words-list = "uab,oss,eur"

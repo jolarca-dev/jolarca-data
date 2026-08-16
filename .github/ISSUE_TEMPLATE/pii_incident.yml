@@ -1,0 +1,50 @@
+name: PII incident
+description: Personal data detected in analytics or committed data — DPO notification. NEVER paste the data itself.
+labels: ["pii", "incident", "dpo"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Stop:** do not include the personal data itself, record
+        contents, or more rows than strictly needed to locate the issue.
+        This issue carries triage metadata only. Follow
+        SECURITY.md / docs/runbooks/pii-detected-in-warehouse.md.
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - low (synthetic-looking false positive to verify)
+        - medium (PII-shaped values in a non-restricted dataset)
+        - high (cleartext identifiers downstream of ingestion)
+        - critical (direct identifiers in marts or committed to git)
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Where detected
+      description: Table/model/file path and column — no row contents.
+    validations:
+      required: true
+  - type: input
+    id: detected_at
+    attributes:
+      label: Detected at (UTC)
+      description: ISO 8601 timestamp.
+    validations:
+      required: true
+  - type: dropdown
+    id: dpo_notified
+    attributes:
+      label: DPO notified
+      options: ["yes", "no — please page"]
+    validations:
+      required: true
+  - type: textarea
+    id: containment
+    attributes:
+      label: Containment actions taken
+      description: Quarantine, pipeline pause, purge request — what has already been done.
+    validations:
+      required: false

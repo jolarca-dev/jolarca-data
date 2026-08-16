@@ -1,0 +1,104 @@
+# Synthetic orders — demo/staging only. EUR cents; vat_rate_pct from
+# seed/tax/vat-rates.yml for the buyer country + category vat_class.
+schema_version: 1
+records:
+  - order_key: SYN-ORD-0001
+    buyer_key: SYN-BUY-0001
+    seller_key: SYN-SLR-0001
+    product_key: SYN-PRD-0001
+    amount_cents: 12100
+    currency: EUR
+    country: LT
+    vat_rate_pct: 21.0
+    status: paid
+    ordered_at: "2026-08-01T10:00:00Z"
+  - order_key: SYN-ORD-0002
+    buyer_key: SYN-BUY-0002
+    seller_key: SYN-SLR-0001
+    product_key: SYN-PRD-0002
+    amount_cents: 18500
+    currency: EUR
+    country: LT
+    vat_rate_pct: 21.0
+    status: shipped
+    ordered_at: "2026-08-02T11:00:00Z"
+  - order_key: SYN-ORD-0003
+    buyer_key: SYN-BUY-0003
+    seller_key: SYN-SLR-0002
+    product_key: SYN-PRD-0003
+    amount_cents: 25000
+    currency: EUR
+    country: LV
+    vat_rate_pct: 21.0
+    status: paid
+    ordered_at: "2026-08-03T12:00:00Z"
+  - order_key: SYN-ORD-0004
+    buyer_key: SYN-BUY-0004
+    seller_key: SYN-SLR-0002
+    product_key: SYN-PRD-0004
+    amount_cents: 3400
+    currency: EUR
+    country: LV
+    vat_rate_pct: 5.0
+    status: delivered
+    ordered_at: "2026-08-04T13:00:00Z"
+  - order_key: SYN-ORD-0005
+    buyer_key: SYN-BUY-0005
+    seller_key: SYN-SLR-0003
+    product_key: SYN-PRD-0005
+    amount_cents: 9900
+    currency: EUR
+    country: LV
+    vat_rate_pct: 21.0
+    status: refunded
+    ordered_at: "2026-08-05T14:00:00Z"
+  - order_key: SYN-ORD-0006
+    buyer_key: SYN-BUY-0006
+    seller_key: SYN-SLR-0003
+    product_key: SYN-PRD-0006
+    amount_cents: 45000
+    currency: EUR
+    country: EE
+    vat_rate_pct: 22.0
+    status: paid
+    ordered_at: "2026-08-06T15:00:00Z"
+  - order_key: SYN-ORD-0007
+    buyer_key: SYN-BUY-0007
+    seller_key: SYN-SLR-0004
+    product_key: SYN-PRD-0007
+    amount_cents: 25000
+    currency: EUR
+    country: EE
+    vat_rate_pct: 22.0
+    status: delivered
+    ordered_at: "2026-08-07T16:00:00Z"
+  - order_key: SYN-ORD-0008
+    buyer_key: SYN-BUY-0008
+    seller_key: SYN-SLR-0004
+    product_key: SYN-PRD-0003
+    amount_cents: 25000
+    currency: EUR
+    country: EE
+    vat_rate_pct: 22.0
+    status: paid
+    ordered_at: "2026-08-08T17:00:00Z"
+  - order_key: SYN-ORD-0009
+    buyer_key: SYN-BUY-0001
+    seller_key: SYN-SLR-0002
+    product_key: SYN-PRD-0004
+    amount_cents: 3400
+    currency: EUR
+    country: LT
+    vat_rate_pct: 9.0
+    status: delivered
+    ordered_at: "2026-08-09T18:00:00Z"
+  - order_key: SYN-ORD-0010
+    buyer_key: SYN-BUY-0002
+    seller_key: SYN-SLR-0001
+    product_key: SYN-PRD-0001
+    amount_cents: 12100
+    currency: EUR
+    country: LT
+    vat_rate_pct: 21.0
+    status: cancelled
+    ordered_at: "2026-08-10T19:00:00Z"

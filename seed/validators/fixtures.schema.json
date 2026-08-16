@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "seed/fixtures/*.yml — synthetic demo records",
+  "description": "Per-file record definition selected by validate-seed.py.",
+  "definitions": {
+    "seller": {
+      "type": "object",
+      "required": ["seller_key", "legal_form", "country", "joined_at", "active"],
+      "properties": {
+        "seller_key": {"type": "string", "pattern": "^SYN-SLR-[0-9]{4}$"},
+        "legal_form": {"enum": ["sole-trader", "uab", "sia", "ou", "fie"]},
+        "country": {"enum": ["LT", "LV", "EE"]},
+        "municipality": {"type": "string"},
+        "joined_at": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+        "active": {"type": "boolean"}
+      }
+    },
+    "product": {
+      "type": "object",
+      "required": ["product_key", "seller_key", "category_code", "title", "price_cents", "currency", "status"],
+      "properties": {
+        "product_key": {"type": "string", "pattern": "^SYN-PRD-[0-9]{4}$"},
+        "seller_key": {"type": "string", "pattern": "^SYN-SLR-[0-9]{4}$"},
+        "category_code": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+        "title": {"type": "string", "minLength": 1},
+        "price_cents": {"type": "integer", "minimum": 0},
+        "currency": {"const": "EUR"},
+        "status": {"enum": ["active", "inactive"]}
+      }
+    },
+    "order": {
+      "type": "object",
+      "required": ["order_key", "buyer_key", "seller_key", "product_key", "amount_cents", "currency", "country", "vat_rate_pct", "status", "ordered_at"],
+      "properties": {
+        "order_key": {"type": "string", "pattern": "^SYN-ORD-[0-9]{4}$"},
+        "buyer_key": {"type": "string", "pattern": "^SYN-BUY-[0-9]{4}$"},
+        "seller_key": {"type": "string", "pattern": "^SYN-SLR-[0-9]{4}$"},
+        "product_key": {"type": "string", "pattern": "^SYN-PRD-[0-9]{4}$"},
+        "amount_cents": {"type": "integer", "minimum": 0},
+        "currency": {"const": "EUR"},
+        "country": {"enum": ["LT", "LV", "EE"]},
+        "vat_rate_pct": {"type": "number", "minimum": 0, "maximum": 30},
+        "status": {"enum": ["paid", "shipped", "delivered", "refunded", "cancelled"]},
+        "ordered_at": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"}
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+# Per-category attribute schemas. The listing form in jol-m-marketplace
+# renders these; enum values are the only allowed values.
+schema_version: 1
+attributes:
+  church-equipment:
+    - name: material
+      type: enum
+      required: true
+      values: [brass, silver-plated, wood, ceramic, glass]
+    - name: denomination
+      type: enum
+      required: false
+      values: [roman-catholic, evangelical-lutheran, orthodox, ecumenical]
+  vestments:
+    - name: material
+      type: enum
+      required: true
+      values: [linen, silk, wool, brocade]
+    - name: liturgical-color
+      type: enum
+      required: true
+      values: [white, red, green, violet, black, gold]
+    - name: size
+      type: string
+      required: false
+  icons:
+    - name: technique
+      type: enum
+      required: true
+      values: [hand-painted, print, mosaic, carving]
+    - name: size
+      type: string
+      required: false
+  funeral:
+    - name: rite
+      type: enum
+      required: false
+      values: [roman-catholic, evangelical-lutheran, orthodox, civil]
+  cemetery:
+    - name: material
+      type: enum
+      required: true
+      values: [granite, marble, wood, metal]
+  books:
+    - name: language
+      type: enum
+      required: true
+      values: [lt, lv, et, en, ru, la]
+  services:
+    - name: region
+      type: enum
+      required: false
+      values: [lt, lv, ee, cross-border]

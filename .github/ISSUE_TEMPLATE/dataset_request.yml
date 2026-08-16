@@ -1,0 +1,51 @@
+name: Dataset request
+description: Register a new dataset — forces purpose, classification, and retention declaration before any code
+labels: ["dataset", "governance"]
+body:
+  - type: input
+    id: dataset
+    attributes:
+      label: Dataset name
+      description: Stable identifier, e.g. fct_payouts or seed_geo_lockers.
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose (RoPA linkage)
+      description: >
+        Why does this dataset exist and which RoPA purpose in
+        jol-m-compliance covers it? If no personal data is involved,
+        state that explicitly.
+    validations:
+      required: true
+  - type: dropdown
+    id: classification
+    attributes:
+      label: Classification tier
+      description: Per governance/classification.md.
+      options: [PUBLIC, INTERNAL, CONFIDENTIAL, RESTRICTED]
+    validations:
+      required: true
+  - type: dropdown
+    id: retention
+    attributes:
+      label: Retention class
+      description: Per governance/retention-map.md; "none" only for synthetic/reference data.
+      options: [short-term (≤ 90 days), operational (≤ 2 years), statutory (≤ 10 years), indefinite-reference, none (synthetic)]
+    validations:
+      required: true
+  - type: textarea
+    id: ownership
+    attributes:
+      label: Owner & steward
+      description: Business owner and technical steward names/teams — orphan datasets are blocked by catalog-lint.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources & lineage
+      description: Upstream systems and fields; which identifiers are present and how they are pseudonymized.
+    validations:
+      required: true

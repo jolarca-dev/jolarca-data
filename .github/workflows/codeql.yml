@@ -1,0 +1,28 @@
+# codeql.yml — inherited baseline, ENABLED for this repository.
+# jol-m-data carries Python gate scripts and pipeline code — CodeQL
+# analyzes them on every PR. Pin actions to full SHAs before first merge
+# to main (fleet supply-chain discipline).
+name: codeql
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 4 * * 1"
+permissions:
+  contents: read
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: python
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3

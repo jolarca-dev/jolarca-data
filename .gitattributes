@@ -1,0 +1,19 @@
+# .gitattributes — diff semantics for the data platform.
+# Data artifacts get whole-line semantics; binaries never fake text diffs.
+
+* text=auto eol=lf
+
+# Registers, seeds and translation memories are data, not prose
+*.csv text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Binary artifacts — no textual diff, no merge guessing
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.zip  binary
+
+# Language identification for review tooling
+*.md linguist-documentation
+*.sql linguist-language SQL

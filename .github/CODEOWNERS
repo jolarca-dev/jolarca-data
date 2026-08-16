@@ -1,0 +1,31 @@
+# CODEOWNERS — routes reviews; the approving-review COUNT is enforced by
+# branch protection / rulesets (see CONTRIBUTING.md, risk classes).
+# CODEOWNERS alone cannot require N approvers — do not rely on it for that.
+
+# Default: data platform operators
+*                                       @journeyoflife-org/data-operators
+
+# Catalog & classification — the governance record (§3 DPO gate)
+/governance/                            @journeyoflife-org/data-operators @journeyoflife-org/compliance
+
+# Anything touching personal-data machinery — DPO required (§3)
+/ingestion/pipelines/pseudonymizer/     @journeyoflife-org/data-operators @journeyoflife-org/compliance
+/warehouse/models/marts/compliance/     @journeyoflife-org/data-operators @journeyoflife-org/compliance
+/lifecycle/                             @journeyoflife-org/data-operators @journeyoflife-org/compliance
+/governance/classification.md           @journeyoflife-org/compliance
+/governance/retention-map.md            @journeyoflife-org/compliance
+
+# Taxonomy is the marketplace domain model — product owner in the loop
+/seed/taxonomy/                         @journeyoflife-org/data-operators @journeyoflife-org/marketplace-product
+/seed/tax/                              @journeyoflife-org/data-operators @journeyoflife-org/finance
+
+# Finance marts
+/warehouse/models/marts/finance/        @journeyoflife-org/data-operators @journeyoflife-org/finance
+
+# Automation touching pipelines needs security in the loop
+/.github/workflows/                     @journeyoflife-org/data-operators @journeyoflife-org/security
+/scripts/                               @journeyoflife-org/data-operators @journeyoflife-org/security
+
+# PII scanning & erasure verification — DPO + security
+/scripts/scan-warehouse-pii.py          @journeyoflife-org/data-operators @journeyoflife-org/compliance
+/scripts/verify-anonymization.py        @journeyoflife-org/data-operators @journeyoflife-org/compliance

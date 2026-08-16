@@ -1,0 +1,55 @@
+# freshness-monitor.yml — daily source freshness vs SLA. A stale
+# pipeline means dashboards and VAT-OSS support figures silently lie;
+# staleness past the SLA alerts. Requires warehouse secrets; skips
+# cleanly until provisioned.
+name: freshness-monitor
+on:
+  schedule:
+    - cron: "20 6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Guard — skip until warehouse secrets exist
+        if: ${{ vars.WH_HOST == '' }}
+        run: echo "Warehouse environment not provisioned yet — skipping."
+
+      - name: Set up Python
+        if: ${{ vars.WH_HOST != '' }}
+        uses: actions/setup-python@a379cfe2253b2a72d6cd7c54c3a5cf16d0b9e529 # v5.6.0
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        if: ${{ vars.WH_HOST != '' }}
+        run: pip install --quiet "pyyaml>=6.0" "psycopg2-binary>=2.9"
+
+      - name: Freshness report vs SLA
+        if: ${{ vars.WH_HOST != '' }}
+        env:
+          WH_HOST: ${{ vars.WH_HOST }}
+          WH_PORT: ${{ vars.WH_PORT }}
+          WH_DB: ${{ vars.WH_DB }}
+          WH_SCHEMA: ${{ vars.WH_SCHEMA }}
+          WH_USER: ${{ secrets.WH_USER }}
+          WH_PASSWORD: ${{ secrets.WH_PASSWORD }}
+        run: python3 scripts/freshness-report.py --fail-on-stale
+
+      - name: Open issue on stale sources
+        if: failure() && vars.WH_HOST != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "freshness-monitor: source SLA breach $(date -u +%Y-%m-%d)" \
+            --label "data-quality" \
+            --body "Daily freshness check failed: at least one source is
+          older than its SLA. See the run report and follow
+          docs/runbooks/pipeline-failure.md.
+          Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"

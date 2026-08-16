@@ -1,0 +1,26 @@
+Copyright (c) 2026 Journey of Life. All rights reserved.
+
+This repository is PRIVATE. It contains the analytics warehouse
+definitions, ingestion pipelines, dataset governance records, and
+reference data of the Journey of Life marketplace. It is designed so
+that no personal data in cleartext is ever committed — but dataset
+structures, business logic, and commercial references are confidential.
+
+INTERNAL USE ONLY. No part of this repository may be copied, distributed,
+published, mirrored, or incorporated into any public repository, artifact,
+or derivative work without prior written authorization from Journey of
+Life.
+
+EXCEPTION — synthetic seed data: files under seed/ and synthetic/ are
+100% synthetic by construction (faker-seeded, no real persons). They may
+be used in demos and staging environments of authorized fleet
+repositories. They may not be republished externally as if they were
+real marketplace data.
+
+Open-source posture for public marketplace code lives in the respective
+public repositories (see jol-m-marketplace). This notice governs
+internal custody of data-platform artifacts only.
+
+Unauthorized disclosure of warehouse credentials, seller/buyer
+aggregates, or any personal data found in this repository is treated as
+a security incident of the highest severity class (see SECURITY.md).

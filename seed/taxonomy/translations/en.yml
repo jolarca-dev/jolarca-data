@@ -1,0 +1,10 @@
+# Category display names — English. Keys must match categories.yml codes.
+schema_version: 1
+names:
+  church-equipment: Church equipment
+  vestments: Vestments
+  icons: Icons
+  funeral: Funeral supplies
+  cemetery: Cemetery supplies
+  books: Books
+  services: Services

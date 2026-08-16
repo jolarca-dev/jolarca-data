@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "seed/tax/vat-rates.yml",
+  "type": "object",
+  "required": ["schema_version", "rates"],
+  "properties": {
+    "schema_version": {"type": "integer", "const": 1},
+    "validated_against": {"type": "string"},
+    "validated_at": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    "rates": {
+      "type": "object",
+      "required": ["LT", "LV", "EE"],
+      "additionalProperties": {
+        "type": "object",
+        "required": ["standard"],
+        "properties": {
+          "standard": {"type": "number", "minimum": 0, "maximum": 30},
+          "reduced": {"type": "number", "minimum": 0, "maximum": 30},
+          "zero": {"type": "number", "const": 0}
+        }
+      }
+    }
+  }
+}

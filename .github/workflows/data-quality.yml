@@ -1,0 +1,42 @@
+# data-quality.yml — Great Expectations / dbt tests on the STAGING
+# warehouse. Scheduled daily + manual. Requires WH_* secrets; skips
+# cleanly until the warehouse environment is provisioned.
+name: data-quality
+on:
+  schedule:
+    - cron: "40 5 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Guard — skip until warehouse secrets exist
+        if: ${{ vars.WH_HOST == '' }}
+        run: echo "Warehouse environment not provisioned yet — skipping."
+
+      - name: Set up Python
+        if: ${{ vars.WH_HOST != '' }}
+        uses: actions/setup-python@a379cfe2253b2a72d6cd7c54c3a5cf16d0b9e529 # v5.6.0
+        with:
+          python-version: "3.12"
+
+      - name: Install dbt
+        if: ${{ vars.WH_HOST != '' }}
+        run: pip install --quiet "dbt-core>=1.8" "dbt-postgres>=1.8"
+
+      - name: Run quality gates (dbt tests on staging + quality suites)
+        if: ${{ vars.WH_HOST != '' }}
+        env:
+          WH_HOST: ${{ vars.WH_HOST }}
+          WH_PORT: ${{ vars.WH_PORT }}
+          WH_DB: ${{ vars.WH_DB }}
+          WH_SCHEMA: ${{ vars.WH_SCHEMA }}
+          WH_USER: ${{ secrets.WH_USER }}
+          WH_PASSWORD: ${{ secrets.WH_PASSWORD }}
+        run: |
+          cp warehouse/profiles.yml.example warehouse/profiles.yml
+          make quality

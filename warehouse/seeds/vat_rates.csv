@@ -1,0 +1,7 @@
+country_code,vat_class,rate_pct,effective_from
+LT,standard,21.0,2026-01-01
+LT,reduced,9.0,2026-01-01
+LV,standard,21.0,2026-01-01
+LV,reduced,5.0,2026-01-01
+EE,standard,22.0,2026-01-01
+EE,reduced,5.0,2026-01-01

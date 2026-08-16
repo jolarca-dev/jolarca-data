@@ -1,0 +1,21 @@
+# .envrc.example — operator environment template (direnv-compatible).
+# Copy to .envrc and fill in from Vaultwarden. .envrc is gitignored.
+# NEVER commit real values; NEVER paste tokens into issue trackers or chat.
+# ADR-0002: analytics never holds production credentials — these point at
+# the staging/dev warehouse and scoped read-replica extract roles only.
+
+# ── Analytics warehouse (dbt profile: warehouse/profiles.yml.example) ─────
+export WH_HOST=""
+export WH_PORT="5432"
+export WH_DB="analytics_dev"
+export WH_SCHEMA="dbt"
+export WH_USER=""
+export WH_PASSWORD=""
+
+# ── Extraction (read-replica only, least privilege — ADR-0002) ────────────
+export EXTRACT_PG_DSN=""        # read-only role on the read replica
+export EXTRACT_STRIPE_KEY=""    # restricted key: charges/payouts read only  # gitleaks:allow
+
+# ── Quality & freshness gates ─────────────────────────────────────────────
+export GE_CONTEXT_ROOT="quality"
+# export SLACK_WEBHOOK_URL=""    # freshness-monitor alerts (optional)

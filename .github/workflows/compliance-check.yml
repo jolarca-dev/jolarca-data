@@ -1,0 +1,46 @@
+# compliance-check.yml — inherited baseline: governance/policy presence.
+# Private repo: the LICENSE is an internal-use notice; every governance
+# file required by CONTRIBUTING.md must exist and stay non-empty.
+name: compliance-check
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  compliance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Governance files present
+        run: |
+          for f in README.md LICENSE SECURITY.md CONTRIBUTING.md CHANGELOG.md \
+                   .github/CODEOWNERS .github/PULL_REQUEST_TEMPLATE.md; do
+            [ -s "$f" ] || { echo "MISSING/EMPTY: $f"; exit 1; }
+          done
+
+      - name: Internal-use notice intact
+        run: grep -q "INTERNAL USE ONLY" LICENSE
+
+      - name: Data governance record complete
+        run: |
+          for f in governance/data-catalog.md governance/classification.md \
+                   governance/ownership-register.csv governance/retention-map.md; do
+            [ -s "$f" ] || { echo "MISSING/EMPTY: $f"; exit 1; }
+          done
+
+      - name: Pseudonymization doctrine documented at the boundary
+        run: |
+          grep -qi "pseudonym" ingestion/README.md \
+            || { echo "pseudonymization doctrine missing: ingestion/README.md"; exit 1; }
+          grep -qi "pseudonym" warehouse/README.md \
+            || { echo "pseudonymization doctrine missing: warehouse/README.md"; exit 1; }
+
+      - name: Retention machinery declares its policy source
+        run: grep -q "jol-m-compliance" lifecycle/README.md
+
+      - name: ADR numbering continuous
+        run: |
+          ls docs/adr/[0-9]*.md 2>/dev/null | sed 's/.*\///;s/-.*//' | awk 'NR>1 && $1!=p+1 {print "gap in ADR numbering"; exit 1} {p=$1}'

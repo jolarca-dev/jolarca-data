@@ -1,0 +1,3 @@
+# Legal holds register — counsel-controlled. See README.md for rules.
+# Entities are pseudonymous keys ONLY; no cleartext identities.
+holds: []

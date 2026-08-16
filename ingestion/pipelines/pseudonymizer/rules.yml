@@ -1,0 +1,38 @@
+# Pseudonymizer rules per source table. Fields NOT listed here are
+# DROPPED by default (fail-closed). Any change is DPO-reviewed.
+schema_version: 1
+default_action: drop
+sources:
+  orders:
+    id: hash
+    buyer_id: hash
+    seller_id: hash
+    status: pass
+    amount_cents: pass
+    currency: pass
+    category_code: pass
+    country_code: pass        # buyer country, 2-letter only
+    vat_rate_pct: pass
+    created_at: pass
+  products:
+    id: hash
+    seller_id: hash
+    category_code: pass
+    title: pass               # product content, reviewed per contract
+    price_cents: pass
+    currency: pass
+    status: pass
+    created_at: pass
+  users:
+    id: hash
+    role: pass
+    country_code: pass
+    consent_marketing: pass   # the flag travels; the identity never does
+    created_at: generalize    # day precision retained; time dropped
+  stripe_charges:
+    charge_id: hash
+    payout_id: hash
+    amount_cents: pass
+    currency: pass
+    status: pass
+    created_at: pass

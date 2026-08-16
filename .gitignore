@@ -1,0 +1,60 @@
+# .gitignore — paranoid baseline for the data platform.
+# RULE: no production data, no extracts, no credentials ever reach git.
+# The repository holds definitions and synthetic data only.
+
+# ── Data extracts & dumps (NEVER in git) ──────────────────────────────────
+*.dump
+*.sql.gz
+*.parquet
+*.sqlite
+*.db
+# CSV extracts — committed CSV is allow-listed explicitly below
+*.csv
+!warehouse/seeds/*.csv
+!governance/*.csv
+!ml/translation-memory/*.csv
+
+# ── dbt build artifacts & packages ───────────────────────────────────────
+warehouse/target/
+warehouse/dbt_packages/
+warehouse/logs/
+dbt_packages/
+target/
+
+# ── Great Expectations runtime ───────────────────────────────────────────
+quality/uncommitted/
+great_expectations/uncommitted/
+
+# ── Secrets & key material ───────────────────────────────────────────────
+*.pem
+*.key
+*.p12
+*.pfx
+*.gpg
+*.agekey
+id_rsa*
+id_ed25519*
+profiles.yml
+!profiles.yml.example
+
+# ── Environment & credential files ───────────────────────────────────────
+.env
+.env.*
+!.envrc.example
+.envrc
+
+# ── Working artifacts ────────────────────────────────────────────────────
+*.tmp
+*~
+__pycache__/
+*.pyc
+
+# ── Editors / OS ─────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# ── Python virtual environments (tooling harness only) ───────────────────
+.venv/
+venv/

@@ -1,0 +1,10 @@
+# Category display names — Estonian. Keys must match categories.yml codes.
+schema_version: 1
+names:
+  church-equipment: Kirikutarbed
+  vestments: Liturgilised rõivad
+  icons: Ikoonid
+  funeral: Matustarbed
+  cemetery: Kalmistutarbed
+  books: Raamatud
+  services: Teenused

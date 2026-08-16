@@ -1,0 +1,72 @@
+# Pre-commit hooks — local gate before CI. Install once: pre-commit install
+# Data-specific: PII pattern scan + sqlfluff + dbt parse run alongside
+# secret scanning. Hook revisions are PINNED; bump via review, never ad hoc.
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: '\.md$'
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+        exclude: '^warehouse/.*\.(yml|yaml)$'  # dbt YAML validated by dbt parse
+      - id: check-json
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: check-added-large-files
+        args: ['--maxkb=512']
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.21.2
+    hooks:
+      - id: gitleaks   # warehouse credentials must never reach git history
+
+  # sqlfluff with the dbt templater needs warehouse/profiles.yml (never
+  # committed) + sqlfluff-templater-dbt; the hard gate is CI dbt-ci.yml,
+  # which builds an ephemeral profile. Locally the hook degrades to a
+  # loud skip, mirroring the dbt-parse hook below.
+
+  - repo: local
+    hooks:
+      - id: check-csv
+        name: CSV structural gate (registers + seeds)
+        entry: python3 scripts/check-csv.py
+        language: system
+        files: '\.csv$'
+      - id: sqlfluff-lint
+        name: sqlfluff warehouse lint (dbt templater; dbt-ci is the hard gate)
+        entry: >-
+          bash -c 'if [ ! -f warehouse/profiles.yml ]; then
+          echo "sqlfluff skipped — warehouse/profiles.yml absent (credential-free checkout); dbt-ci is the hard gate";
+          exit 0; fi;
+          command -v sqlfluff >/dev/null || {
+          echo "sqlfluff skipped — sqlfluff not installed locally"; exit 0; };
+          sqlfluff lint warehouse/models --config .sqlfluff'
+        language: system
+        files: '^warehouse/.*\.sql$'
+        pass_filenames: false
+      - id: pii-pattern-scan
+        name: PII pattern scan (seed + tracked text tripwire)
+        entry: bash scripts/check-personal-data.sh
+        language: system
+        # Flags Baltic national IDs, IBANs, bulk email lists, and
+        # PII-shaped values in tracked files. Tripwire only — fixtures
+        # must be synthetic by construction (CONTRIBUTING.md).
+        files: '\.(md|csv|txt|yml|yaml|sql)$'
+        pass_filenames: false
+      - id: seed-schema-validate
+        name: seed/taxonomy JSON Schema validation
+        entry: python3 scripts/validate-seed.py
+        language: system
+        files: '^(seed|governance)/'
+        pass_filenames: false
+      - id: dbt-parse
+        name: dbt parse (warehouse config sanity)
+        entry: >-
+          bash -c 'command -v dbt >/dev/null &&
+          dbt parse --project-dir warehouse --profiles-dir warehouse
+          --no-version-check || echo "dbt not installed — skipped"'
+        language: system
+        files: '^warehouse/'
+        pass_filenames: false
