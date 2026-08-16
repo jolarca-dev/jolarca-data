@@ -58,3 +58,4 @@ __pycache__/
 # ── Python virtual environments (tooling harness only) ───────────────────
 .venv/
 venv/
+warehouse/.user.yml
