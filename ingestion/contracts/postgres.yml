@@ -1,0 +1,40 @@
+# Schema contract — jol-m-marketplace read replica (postgres_extract).
+# ALLOW-LIST: only these fields may leave the source. Widening is a
+# DPO-reviewed change. Pseudonymizer actions: see
+# ../pipelines/pseudonymizer/rules.yml (fail-closed default: drop).
+schema_version: 1
+source: marketplace_read_replica
+role: jol_extract           # read-only, table-scoped (extract-role.sql)
+tables:
+  orders:
+    allow:
+      - id                  # hashed at landing
+      - buyer_id            # hashed at landing
+      - seller_id           # hashed at landing
+      - status
+      - amount_cents
+      - currency
+      - category_code
+      - country_code
+      - vat_rate_pct
+      - created_at
+    prohibited_examples: [buyer_name, billing_address, notes]
+  products:
+    allow:
+      - id                  # hashed at landing
+      - seller_id           # hashed at landing
+      - category_code
+      - title
+      - price_cents
+      - currency
+      - status
+      - created_at
+    prohibited_examples: [cost_price, supplier_ref]
+  users:
+    allow:
+      - id                  # hashed at landing
+      - role
+      - country_code
+      - consent_marketing
+      - created_at          # generalized to day precision
+    prohibited_examples: [name, email, phone, national_id, bank_ref]

@@ -1,0 +1,29 @@
+# Schema contract — Stripe (stripe_extract).
+# ALLOW-LIST of charge/payout METADATA. PAN and cardholder data never
+# leave Stripe under any circumstance (SAQ-A boundary holds in
+# analytics too). Restricted key, read scope only.
+schema_version: 1
+source: stripe_api
+key_scope: restricted       # charges:read, payouts:read — nothing else
+objects:
+  charges:
+    allow:
+      - charge_id           # hashed at landing
+      - payout_id           # hashed at landing
+      - amount_cents
+      - currency
+      - status
+      - created_at
+    prohibited_examples:
+      - card_number         # PAN — never
+      - cardholder_name
+      - bank_account_number
+      - dispute_evidence
+  payouts:
+    allow:
+      - payout_id           # hashed at landing
+      - amount_cents
+      - currency
+      - status
+      - arrival_period
+    prohibited_examples: [bank_account_number, recipient_name]

@@ -1,0 +1,27 @@
+# sqlfluff — warehouse SQL style. Lint runs in pre-commit and dbt-ci.
+# Keep rules conservative: dbt-templated SQL must lint clean without
+# disabling safety rules.
+
+[sqlfluff]
+dialect = postgres
+templater = dbt
+max_line_length = 100
+exclude_rules = LT05
+
+[sqlfluff:templater:dbt]
+project_dir = warehouse
+profiles_dir = warehouse
+
+[sqlfluff:indentation]
+# Models are written with 4-space indents (dbt convention in this repo);
+# keep the linter aligned with the code, not the other way round.
+tab_space_size = 4
+
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.identifiers]
+capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.functions]
+capitalisation_policy = lower

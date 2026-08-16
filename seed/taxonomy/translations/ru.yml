@@ -1,0 +1,11 @@
+# Category display names — Russian (RESERVED locale; enabled per
+# product policy decision). Keys must match categories.yml codes.
+schema_version: 1
+names:
+  church-equipment: Церковная утварь
+  vestments: Богослужебные облачения
+  icons: Иконы
+  funeral: Ритуальные принадлежности
+  cemetery: Кладбищенские принадлежности
+  books: Книги
+  services: Услуги

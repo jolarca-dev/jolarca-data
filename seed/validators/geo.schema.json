@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "seed/geo/*.yml",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["schema_version", "municipalities"],
+      "properties": {
+        "schema_version": {"type": "integer", "const": 1},
+        "municipalities": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["code", "country", "name", "type"],
+            "properties": {
+              "code": {"type": "string", "minLength": 2},
+              "country": {"enum": ["LT", "LV", "EE"]},
+              "name": {"type": "string", "minLength": 1},
+              "type": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "parishes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["code", "municipality"],
+            "properties": {
+              "code": {"type": "string", "minLength": 2},
+              "municipality": {"type": "string", "minLength": 2},
+              "name_ref": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": ["schema_version", "lockers"],
+      "properties": {
+        "schema_version": {"type": "integer", "const": 1},
+        "lockers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["code", "provider", "country", "municipality"],
+            "properties": {
+              "code": {"type": "string", "pattern": "^SYN-"},
+              "provider": {"enum": ["omniva", "dpd"]},
+              "country": {"enum": ["LT", "LV", "EE"]},
+              "municipality": {"type": "string", "minLength": 2},
+              "locality": {"type": "string"}
+            }
+          }
+        }
+      }
+    }
+  ]
+}

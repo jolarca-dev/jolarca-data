@@ -1,0 +1,46 @@
+# dbt project — jol-m-data analytics warehouse.
+# Profile: warehouse/profiles.yml.example (env-var driven; no
+# credentials in-repo — ADR-0002).
+name: jol_m_data
+profile: jol_m_data
+version: "1.0.0"
+
+require-dbt-version: [">=1.8.0", "<2.0.0"]
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+clean-targets: ["target", "dbt_packages"]
+
+vars:
+  # Salt for identifier hashing. Production runs MUST set HASH_SALT via
+  # the environment; the dev default is explicitly non-secret.
+  hash_salt: "{{ env_var('HASH_SALT', 'dev-only-salt') }}"
+  # Marketplace take rate used by fct_commission until the fee engine
+  # emits real figures.
+  commission_rate_pct: 10.0
+
+models:
+  jol_m_data:
+    staging:
+      +materialized: view
+      +schema: staging
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    marts:
+      +materialized: table
+      core:
+        +schema: core
+      finance:
+        +schema: finance
+      marketplace:
+        +schema: marketplace
+      compliance:
+        +schema: compliance
+
+seeds:
+  jol_m_data:
+    +schema: ref

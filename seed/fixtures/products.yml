@@ -1,0 +1,59 @@
+# Synthetic products — demo/staging only.
+schema_version: 1
+records:
+  - product_key: SYN-PRD-0001
+    seller_key: SYN-SLR-0001
+    category_code: church-equipment
+    title: Synthetic brass candelabrum
+    price_cents: 12100
+    currency: EUR
+    status: active
+  - product_key: SYN-PRD-0002
+    seller_key: SYN-SLR-0001
+    category_code: vestments
+    title: Synthetic linen alb (white)
+    price_cents: 18500
+    currency: EUR
+    status: active
+  - product_key: SYN-PRD-0003
+    seller_key: SYN-SLR-0002
+    category_code: icons
+    title: Synthetic hand-painted icon panel
+    price_cents: 25000
+    currency: EUR
+    status: active
+  - product_key: SYN-PRD-0004
+    seller_key: SYN-SLR-0002
+    category_code: books
+    title: Synthetic hymnal (lt)
+    price_cents: 3400
+    currency: EUR
+    status: active
+  - product_key: SYN-PRD-0005
+    seller_key: SYN-SLR-0003
+    category_code: funeral
+    title: Synthetic ceremonial set
+    price_cents: 9900
+    currency: EUR
+    status: active
+  - product_key: SYN-PRD-0006
+    seller_key: SYN-SLR-0003
+    category_code: cemetery
+    title: Synthetic granite marker
+    price_cents: 45000
+    currency: EUR
+    status: active
+  - product_key: SYN-PRD-0007
+    seller_key: SYN-SLR-0004
+    category_code: services
+    title: Synthetic ceremony service
+    price_cents: 25000
+    currency: EUR
+    status: active
+  - product_key: SYN-PRD-0008
+    seller_key: SYN-SLR-0005
+    category_code: books
+    title: Synthetic prayer book (et)
+    price_cents: 2900
+    currency: EUR
+    status: inactive

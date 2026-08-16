@@ -1,0 +1,26 @@
+# Marketplace product categorization — THE domain model.
+# Consumer: jol-m-marketplace (category tree, listing form, search).
+# Change classes: code removed/renamed = MAJOR; added = MINOR; metadata = PATCH.
+schema_version: 1
+categories:
+  - code: church-equipment
+    parent: null
+    vat_class: standard
+  - code: vestments
+    parent: null
+    vat_class: standard
+  - code: icons
+    parent: null
+    vat_class: standard
+  - code: funeral
+    parent: null
+    vat_class: standard
+  - code: cemetery
+    parent: null
+    vat_class: standard
+  - code: books
+    parent: null
+    vat_class: reduced
+  - code: services
+    parent: null
+    vat_class: standard

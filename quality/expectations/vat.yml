@@ -1,0 +1,20 @@
+# Expectation suite — VAT correctness (money-critical).
+suite: vat
+owner: finance
+tables: [fct_orders, fct_vat_oss, warehouse ref.vat_rates]
+expectations:
+  - id: vat-rate-in-reference-set
+    description: >
+      Applied rate must match seed/tax/vat-rates.yml for the country +
+      vat_class (e.g. LT standard in {21}, LV standard in {21},
+      EE standard in {22}).
+    rule: (country_code, vat_class, vat_rate_pct) joins ref.vat_rates
+    severity: block
+  - id: vat-bounds
+    description: Rate within EU-referenced bounds.
+    rule: vat_rate_pct between 0 and 30
+    severity: block
+  - id: vat-net-plus-vat-equals-gross
+    description: Arithmetic closure per order.
+    rule: abs(net_amount_eur + vat_amount_eur - amount_eur) < 0.01
+    severity: block

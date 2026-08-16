@@ -1,0 +1,17 @@
+# Qodana static analysis — inherited from jol-repo-template baseline.
+# Data repo profile: lint scripts and warehouse Python; SQL/YAML content
+# quality is handled by dbt-ci (sqlfluff, dbt parse/test) and the ci
+# workflow (seed schema validation, PII scan).
+version: "1.0"
+linter: jetbrains/qodana-python:2025.1
+profile:
+  name: qodana.recommended
+exclude:
+  - name: All
+    paths:
+      - .idea
+      - .venv
+      - warehouse/target
+      - warehouse/dbt_packages
+include:
+  - name: CheckLicenseCopyright

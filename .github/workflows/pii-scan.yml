@@ -1,0 +1,52 @@
+# pii-scan.yml — scheduled scan of seed data (always) and the staging
+# warehouse (when provisioned) for PII-shaped values. Findings page the
+# DPO: an issue labeled pii/incident/dpo is opened and never contains the
+# offending values themselves.
+name: pii-scan
+on:
+  schedule:
+    - cron: "10 4 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.12"
+
+      - name: Install scan dependencies
+        run: pip install --quiet "pyyaml>=6.0"
+
+      - name: Scan committed seed & fixture data
+        run: python3 scripts/scan-warehouse-pii.py --local
+
+      - name: Scan staging warehouse (if provisioned)
+        if: ${{ vars.WH_HOST != '' }}
+        env:
+          WH_HOST: ${{ vars.WH_HOST }}
+          WH_PORT: ${{ vars.WH_PORT }}
+          WH_DB: ${{ vars.WH_DB }}
+          WH_SCHEMA: ${{ vars.WH_SCHEMA }}
+          WH_USER: ${{ secrets.WH_USER }}
+          WH_PASSWORD: ${{ secrets.WH_PASSWORD }}
+        run: python3 scripts/scan-warehouse-pii.py --warehouse
+
+      - name: Open DPO issue on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "pii-scan: PII-shaped values detected $(date -u +%Y-%m-%d)" \
+            --label "pii" \
+            --body "Scheduled pii-scan failed. See the run for affected
+          table/file locations (values are NOT included here by design).
+          Follow docs/runbooks/pii-detected-in-warehouse.md and notify
+          the DPO. Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"

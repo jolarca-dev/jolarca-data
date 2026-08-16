@@ -1,0 +1,17 @@
+# Expectation suite — products (valid taxonomy).
+suite: products
+owner: data-platform
+tables: [raw.products, dim_products]
+expectations:
+  - id: products-valid-taxonomy
+    description: category_code must exist in seed/taxonomy/categories.yml.
+    rule: category_code in taxonomy_codes
+    severity: block
+  - id: products-price-positive
+    description: Active listings must have price > 0.
+    rule: price_eur > 0 when status = active
+    severity: block
+  - id: products-seller-key-format
+    description: Seller keys are 32-char lowercase hex hashes.
+    rule: seller_key matches '^[0-9a-f]{32}$'
+    severity: block

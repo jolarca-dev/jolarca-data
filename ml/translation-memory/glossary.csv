@@ -1,0 +1,11 @@
+term_id,lt,lv,et,en,source
+tm-001,Bažnytiniai reikmenys,Baznīcas piederumi,Kirikutarbed,Church equipment,seed-taxonomy
+tm-002,Liturginiai rūbai,Liturģiskie tērpi,Liturgilised rõivad,Vestments,seed-taxonomy
+tm-003,Ikonos,Ikonas,Ikoonid,Icons,seed-taxonomy
+tm-004,Laidotuvių reikmenys,Bēru piederumi,Matustarbed,Funeral supplies,seed-taxonomy
+tm-005,Kapinių reikmenys,Kapu piederumi,Kalmistutarbed,Cemetery supplies,seed-taxonomy
+tm-006,Pardavėjas,Pārdevējs,Müüja,Seller,marketplace
+tm-007,Pirkėjs,Pircējs,Ostja,Buyer,marketplace
+tm-008,Skelimas,Sludinājums,Kuulutus,Listing,marketplace
+tm-009,Pristatymas,Piegāde,Tarnimine,Delivery,marketplace
+tm-010,Grąžinimas,Atgriešana,Tagastamine,Refund/return,marketplace

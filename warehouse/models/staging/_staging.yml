@@ -1,0 +1,35 @@
+# Source declarations + freshness SLAs.
+# Raw landing is pseudonymous by contract (ingestion/contracts/); these
+# tables must never gain cleartext identifier columns — such a change
+# requires DPO review.
+version: 2
+
+sources:
+  - name: jol_marketplace_raw
+    description: >
+      Pseudonymized landing from the jol-m-marketplace read replica via
+      ingestion/pipelines/postgres_extract + pseudonymizer. Read-only
+      role, least privilege.
+    schema: raw
+    loaded_at_field: created_at
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+    tables:
+      - name: orders
+        description: Order headers with hashed subject keys upstream.
+        columns:
+          - name: id
+            tests: [not_null, unique]
+      - name: products
+        description: Listings with hashed seller keys upstream.
+        columns:
+          - name: id
+            tests: [not_null, unique]
+      - name: users
+        description: >
+          Account roles/geo/consent only. Names/emails are dropped by
+          the pseudonymizer before landing.
+        columns:
+          - name: id
+            tests: [not_null, unique]

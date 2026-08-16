@@ -1,0 +1,21 @@
+# Expectation suite — orders (staging + fct_orders).
+suite: orders
+owner: data-platform
+tables: [raw.orders, fct_orders]
+expectations:
+  - id: orders-amounts-positive
+    description: Paid/shipped/delivered orders must have amount > 0.
+    rule: amount_eur > 0 when status in (paid, shipped, delivered)
+    severity: block
+  - id: orders-valid-states
+    description: Status must be a known lifecycle state.
+    rule: status in (paid, shipped, delivered, refunded, cancelled)
+    severity: block
+  - id: orders-no-future-timestamps
+    description: created_at must not be in the future (clock drift guard).
+    rule: created_at <= now() + interval '5 minutes'
+    severity: warn
+  - id: orders-seller-key-present
+    description: Every order has a pseudonymous seller key.
+    rule: seller_key is not null
+    severity: block

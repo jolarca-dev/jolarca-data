@@ -1,0 +1,34 @@
+# Synthetic sellers — demo/staging only. Identities are faker-seeded;
+# regeneration with a new seed must yield new identities.
+schema_version: 1
+records:
+  - seller_key: SYN-SLR-0001
+    legal_form: sole-trader
+    country: LT
+    municipality: LT-VNO
+    joined_at: "2026-01-15"
+    active: true
+  - seller_key: SYN-SLR-0002
+    legal_form: uab
+    country: LT
+    municipality: LT-KAU
+    joined_at: "2026-02-20"
+    active: true
+  - seller_key: SYN-SLR-0003
+    legal_form: sole-trader
+    country: LV
+    municipality: LV-RIX
+    joined_at: "2026-03-10"
+    active: true
+  - seller_key: SYN-SLR-0004
+    legal_form: ou
+    country: EE
+    municipality: EE-303
+    joined_at: "2026-04-05"
+    active: true
+  - seller_key: SYN-SLR-0005
+    legal_form: sole-trader
+    country: EE
+    municipality: EE-784
+    joined_at: "2026-05-12"
+    active: false

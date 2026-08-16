@@ -1,0 +1,43 @@
+# LT/LV/EE municipalities + parish boundary references (subset).
+# Full administrative lists sync from official open-data sources; this
+# seed defines the code scheme and demo coverage.
+schema_version: 1
+municipalities:
+  - code: LT-VNO
+    country: LT
+    name: Vilniaus miesto savivaldybė
+    type: city-municipality
+  - code: LT-KAU
+    country: LT
+    name: Kauno miesto savivaldybė
+    type: city-municipality
+  - code: LT-KLA
+    country: LT
+    name: Klaipėdos miesto savivaldybė
+    type: city-municipality
+  - code: LV-RIX
+    country: LV
+    name: Rīgas valstspilsēta
+    type: state-city
+  - code: LV-TUK
+    country: LV
+    name: Tukuma novads
+    type: municipality
+  - code: EE-303
+    country: EE
+    name: Tallinn
+    type: urban-municipality
+  - code: EE-784
+    country: EE
+    name: Tartu
+    type: urban-municipality
+parishes:
+  - code: PAR-LT-VNO-001
+    municipality: LT-VNO
+    name_ref: synthetic-parish-ref   # parish boundary refs are code-only
+  - code: PAR-LV-RIX-001
+    municipality: LV-RIX
+    name_ref: synthetic-parish-ref
+  - code: PAR-EE-303-001
+    municipality: EE-303
+    name_ref: synthetic-parish-ref

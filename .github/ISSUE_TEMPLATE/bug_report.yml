@@ -1,0 +1,48 @@
+name: Bug report
+description: Defect in a pipeline, model, seed file, or this repo's automation (NOT an incident — use SECURITY.md for those)
+labels: ["bug"]
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Observed vs expected behavior
+      description: What is wrong, what should be true. Do NOT paste personal data or credentials into this issue.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - warehouse-models
+        - ingestion
+        - quality
+        - seed-taxonomy
+        - governance
+        - lifecycle
+        - ml
+        - ci-cd
+        - scripts
+        - docs
+        - other
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: If personal data may have leaked into the warehouse, STOP and follow SECURITY.md instead.
+      options:
+        - minor (cosmetic/dashboards)
+        - moderate (wrong metric)
+        - major (wrong money/VAT figure)
+        - critical (pseudonymization or retention defect)
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction / evidence
+      description: Pipeline/model name, failing test or expectation, date window affected.
+    validations:
+      required: true

@@ -1,0 +1,10 @@
+# Category display names — Lithuanian. Keys must match categories.yml codes.
+schema_version: 1
+names:
+  church-equipment: Bažnytiniai reikmenys
+  vestments: Liturginiai rūbai
+  icons: Ikonos
+  funeral: Laidotuvių reikmenys
+  cemetery: Kapinių reikmenys
+  books: Knygos
+  services: Paslaugos

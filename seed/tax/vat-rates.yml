@@ -1,0 +1,15 @@
+# VAT rate references per category class per country.
+# vat_class follows seed/taxonomy/categories.yml. Amounts in percent.
+schema_version: 1
+validated_against: stripe-tax
+validated_at: "2026-08-01"
+rates:
+  LT:
+    standard: 21.0
+    reduced: 9.0      # books
+  LV:
+    standard: 21.0
+    reduced: 5.0      # books
+  EE:
+    standard: 22.0
+    reduced: 5.0      # books

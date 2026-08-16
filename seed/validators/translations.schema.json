@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "seed/taxonomy/translations/<lang>.yml",
+  "type": "object",
+  "required": ["schema_version", "names"],
+  "properties": {
+    "schema_version": {"type": "integer", "const": 1},
+    "names": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "string", "minLength": 1},
+      "propertyNames": {"pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"}
+    }
+  }
+}

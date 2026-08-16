@@ -1,0 +1,25 @@
+# PII canaries — synthetic, unassignable, scanner self-test only.
+# scan-warehouse-pii.py --self-test must detect EVERY value below.
+schema_version: 1
+canaries:
+  - kind: baltic-national-id-lt
+    value: "00000000000"
+    note: 11-digit shape, invalid check digits
+  - kind: baltic-national-id-lv
+    value: "000000-00000"
+    note: personas koda shape, all zeros
+  - kind: baltic-national-id-ee
+    value: "00000000000"
+    note: isikukood shape, all zeros
+  - kind: iban
+    value: "LT00 0000 0000 0000 0000"
+    note: structurally invalid test IBAN
+  - kind: email
+    value: "canary.user@example.test"
+    note: reserved test domain
+  - kind: phone-lt
+    value: "+370 000 00000"
+    note: zero subscriber number
+  - kind: name-with-address
+    value: "Synthetic Person, Synthetic g. 0, Vilnius"
+    note: name+address conjunction pattern

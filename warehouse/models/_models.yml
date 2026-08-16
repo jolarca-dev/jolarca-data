@@ -1,0 +1,142 @@
+# Model documentation — every model documented with owner + tests.
+# Undocumented models fail dbt-ci review (CONTRIBUTING.md warehouse
+# doctrine). meta.owner values match governance/ownership-register.csv.
+version: 2
+
+models:
+  # ── staging ────────────────────────────────────────────────────────────
+  - name: stg_orders
+    description: Order headers; subject ids hashed, PII stripped here.
+    meta: {owner: data-platform}
+    columns:
+      - name: order_key
+        tests: [not_null, unique, assert_id_hash_format]
+      - name: currency
+        tests: [assert_accepted_currency_eur]
+      - name: vat_rate_pct
+        tests: [assert_vat_rate_bounds]
+
+  - name: stg_products
+    description: Listings; seller key hashed.
+    meta: {owner: data-platform}
+    columns:
+      - name: product_key
+        tests: [not_null, unique, assert_id_hash_format]
+      - name: currency
+        tests: [assert_accepted_currency_eur]
+
+  - name: stg_users
+    description: Pseudonymous account dimension (role/geo/consent only).
+    meta: {owner: data-platform}
+    columns:
+      - name: user_key
+        tests: [not_null, unique, assert_id_hash_format]
+
+  # ── intermediate ───────────────────────────────────────────────────────
+  - name: int_order_items_enriched
+    description: Orders enriched with seller geography and tenure.
+    meta: {owner: data-platform}
+    columns:
+      - name: order_key
+        tests: [not_null, unique]
+
+  - name: int_seller_lifecycle
+    description: Per-seller activity spine (pseudonymous).
+    meta: {owner: data-platform}
+    columns:
+      - name: seller_key
+        tests: [not_null, unique]
+
+  # ── marts/core ─────────────────────────────────────────────────────────
+  - name: fct_orders
+    description: Order facts; EUR amounts; pseudonymous keys.
+    meta: {owner: data-platform}
+    columns:
+      - name: order_key
+        tests:
+          - not_null
+          - unique
+          - assert_id_hash_format
+      - name: seller_key
+        tests: [not_null, assert_id_hash_format]
+      - name: currency
+        tests: [assert_accepted_currency_eur]
+      - name: vat_rate_pct
+        tests: [assert_vat_rate_bounds]
+
+  - name: dim_products
+    description: Taxonomy-linked product dimension.
+    meta: {owner: data-platform}
+    columns:
+      - name: product_key
+        tests: [not_null, unique]
+
+  - name: dim_sellers
+    description: Pseudonymized seller dimension (no identity fields).
+    meta: {owner: data-platform}
+    columns:
+      - name: seller_key
+        tests: [not_null, unique, assert_id_hash_format]
+
+  - name: dim_date
+    description: Calendar dimension (static reporting window).
+    meta: {owner: data-platform}
+    columns:
+      - name: date_day
+        tests: [not_null, unique]
+
+  # ── marts/finance ──────────────────────────────────────────────────────
+  - name: fct_vat_oss
+    description: VAT OSS reporting support per country/quarter/rate.
+    meta: {owner: finance}
+    columns:
+      - name: destination_country
+        tests: [not_null]
+      - name: vat_rate_pct
+        tests: [assert_vat_rate_bounds]
+
+  - name: fct_commission
+    description: Commission per revenue order (rate-var until fee engine).
+    meta: {owner: finance}
+    columns:
+      - name: order_key
+        tests: [not_null, unique]
+
+  - name: fct_payouts
+    description: Settlement-basis payout periods (scaffold until Stripe).
+    meta: {owner: finance}
+    columns:
+      - name: seller_key
+        tests: [not_null]
+
+  # ── marts/marketplace ──────────────────────────────────────────────────
+  - name: seller_health
+    description: Per-seller health aggregates (pseudonymous).
+    meta: {owner: marketplace-product}
+    columns:
+      - name: seller_key
+        tests: [not_null, unique]
+
+  - name: listing_funnel
+    description: Category-level listing funnel.
+    meta: {owner: marketplace-product}
+    columns:
+      - name: category_code
+        tests: [not_null, unique]
+
+  - name: search_analytics
+    description: Search relevance aggregates (empty-set scaffold).
+    meta: {owner: marketplace-product}
+
+  # ── marts/compliance (AGGREGATES ONLY — RESTRICTED) ────────────────────
+  - name: dsr_sla_metrics
+    description: DSAR SLA aggregates; no per-subject rows ever.
+    meta: {owner: dpo}
+
+  - name: consent_rates
+    description: Consent opt-in aggregates per cohort/country.
+    meta: {owner: dpo}
+
+  - name: erasure_execution_log
+    description: Erasure execution aggregates; proofs in lifecycle.
+    meta: {owner: dpo}

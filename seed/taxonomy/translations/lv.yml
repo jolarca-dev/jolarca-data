@@ -1,0 +1,10 @@
+# Category display names — Latvian. Keys must match categories.yml codes.
+schema_version: 1
+names:
+  church-equipment: Baznīcas piederumi
+  vestments: Liturģiskie tērpi
+  icons: Ikonas
+  funeral: Bēru piederumi
+  cemetery: Kapu piederumi
+  books: Grāmatas
+  services: Pakalpojumi
