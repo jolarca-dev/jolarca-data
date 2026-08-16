@@ -1,4 +1,8 @@
-# codeql.yml — inherited baseline, ENABLED for this repository.
+# codeql.yml.DISABLED — CodeQL requires GitHub Advanced Security, which the
+# org (team plan) does not license; code scanning on PRIVATE repos is
+# unavailable (HTTP 403 on default-setup). Fleet pattern: keep the workflow
+# intact but inert until GHAS is procured — re-enable by removing the
+# .disabled suffix (audit finding: security tooling procurement).
 # jol-m-data carries Python gate scripts and pipeline code — CodeQL
 # analyzes them on every PR. Pin actions to full SHAs before first merge
 # to main (fleet supply-chain discipline).
