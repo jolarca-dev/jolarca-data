@@ -3,7 +3,7 @@
 Each job implements exactly one retention class from
 `governance/retention-map.md`; the class → mechanism mapping is owned
 there, execution is owned here. **Warehouse only** — production
-retention is owned by `jol-m-marketplace`.
+retention is owned by `jolarca`.
 
 ## Job contract (every job must)
 

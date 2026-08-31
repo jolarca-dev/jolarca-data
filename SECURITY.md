@@ -1,4 +1,4 @@
-# Security Policy — jol-m-data
+# Security Policy — jolarca-data
 
 ## Severity doctrine
 
@@ -11,12 +11,12 @@ of ingestion means that boundary failed — treat it as such.
 
 Order of notification:
 
-1. DPO (`jol-m-compliance`) — immediately; GDPR 72h assessment clock is
+1. DPO (`jolarca-compliance`) — immediately; GDPR 72h assessment clock is
    the DPO's, and the PII runbook is DPO-controlled.
 2. Data platform owner (repo owner) — immediately, in parallel.
-3. Security function / incident commander (`jol-m-infrastructure`
+3. Security function / incident commander (`jolarca-infrastructure`
    runbooks).
-4. General counsel (`jol-m-legal`) if regulatory notification becomes
+4. General counsel (`jolarca-legal`) if regulatory notification becomes
    likely.
 
 ## Reporting
@@ -25,8 +25,8 @@ Report vulnerabilities and data incidents privately. **Never** open a
 public issue, paste credentials into chat, or describe affected records
 in a tracker.
 
-- Security function contact: per `jol-m-infrastructure/SECURITY.md`.
-- DPO contact: per `jol-m-compliance` (RoPA point of contact).
+- Security function contact: per `jolarca-infrastructure/SECURITY.md`.
+- DPO contact: per `jolarca-compliance` (RoPA point of contact).
 - Use the `pii_incident` issue template only for **non-sensitive**
   metadata (where, when, which pipeline) — never the data itself.
 

@@ -39,7 +39,7 @@ jobs:
             || { echo "pseudonymization doctrine missing: warehouse/README.md"; exit 1; }
 
       - name: Retention machinery declares its policy source
-        run: grep -q "jol-m-compliance" lifecycle/README.md
+        run: grep -q "jolarca-compliance" lifecycle/README.md
 
       - name: ADR numbering continuous
         run: |

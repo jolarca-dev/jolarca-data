@@ -1,4 +1,4 @@
-# dbt project — jol-m-data analytics warehouse.
+# dbt project — jolarca-data analytics warehouse.
 # Profile: warehouse/profiles.yml.example (env-var driven; no
 # credentials in-repo — ADR-0002).
 name: jol_m_data

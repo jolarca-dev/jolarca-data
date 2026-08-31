@@ -1,5 +1,5 @@
 # Marketplace product categorization — THE domain model.
-# Consumer: jol-m-marketplace (category tree, listing form, search).
+# Consumer: jolarca (category tree, listing form, search).
 # Change classes: code removed/renamed = MAJOR; added = MINOR; metadata = PATCH.
 schema_version: 1
 categories:

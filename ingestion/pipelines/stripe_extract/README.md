@@ -8,7 +8,7 @@ Extracts settlement metadata from Stripe with a **restricted key**:
   numbers, dispute evidence content. The SAQ-A boundary holds in
   analytics too.
 
-Key custody follows `jol-m-infrastructure` token rotation discipline;
+Key custody follows `jolarca-infrastructure` token rotation discipline;
 the key lives in Vaultwarden and is referenced via `EXTRACT_STRIPE_KEY`
 (see `.envrc.example`) — never committed.
 

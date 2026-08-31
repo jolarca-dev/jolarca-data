@@ -24,4 +24,4 @@ re-identification on samples:
    boundary has a hole.
 
 Proofs are written to run logs here (gitignored working files; durable
-copies go to the compliance evidence custody in `jol-m-compliance`).
+copies go to the compliance evidence custody in `jolarca-compliance`).

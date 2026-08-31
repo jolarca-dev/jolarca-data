@@ -1,4 +1,4 @@
-# Schema contract — jol-m-marketplace read replica (postgres_extract).
+# Schema contract — jolarca read replica (postgres_extract).
 # ALLOW-LIST: only these fields may leave the source. Widening is a
 # DPO-reviewed change. Pseudonymizer actions: see
 # ../pipelines/pseudonymizer/rules.yml (fail-closed default: drop).

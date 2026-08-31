@@ -8,7 +8,7 @@ counsel/DPO-controlled action and is logged.
 ## Operating rules
 
 1. Entities are referenced by pseudonymous key only; the mapping to a
-   subject exists inside `jol-m-marketplace`/`jol-m-compliance`.
+   subject exists inside `jolarca`/`jolarca-compliance`.
 2. Every hold carries: reason class (litigation, regulatory inquiry,
    audit), requested by (role, not name in this file), start date.
 3. Retention jobs MUST consult `holds.yml` and skip held entities,

@@ -1,7 +1,7 @@
 # Fixtures — demo sellers/products/orders
 
 100% synthetic (faker-seeded, PII-free by construction). Used by
-`jol-m-marketplace` demo/staging environments and by dbt-ci as the
+`jolarca` demo/staging environments and by dbt-ci as the
 synthetic raw schema.
 
 ## Generation procedure

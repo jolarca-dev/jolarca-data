@@ -1,4 +1,4 @@
-# Per-category attribute schemas. The listing form in jol-m-marketplace
+# Per-category attribute schemas. The listing form in jolarca
 # renders these; enum values are the only allowed values.
 schema_version: 1
 attributes:

@@ -1,6 +1,6 @@
 -- dsr_sla_metrics — DSAR/DSR handling SLA aggregates (RESTRICTED).
 -- AGGREGATES ONLY: per-subject rows must never exist here. Source is
--- the jol-m-compliance DSAR log extract; SCAFFOLD empty set until that
+-- the jolarca-compliance DSAR log extract; SCAFFOLD empty set until that
 -- ingestion lands.
 select
     cast(null as date) as report_month,

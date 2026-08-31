@@ -7,7 +7,7 @@ decide whether downstream consumers must be marked stale.
 
 | Pipeline | First check | Likely cause | Fix path |
 |----------|-------------|--------------|----------|
-| postgres_extract | extract role connectivity to replica | replica lag, role grant drift, network plane | verify replica health (`jol-m-infrastructure`), re-run nightly batch |
+| postgres_extract | extract role connectivity to replica | replica lag, role grant drift, network plane | verify replica health (`jolarca-infrastructure`), re-run nightly batch |
 | stripe_extract | restricted key scope/quota | key rotation, Stripe outage | rotate via `.envrc`, backfill the window |
 | pseudonymizer | rule parse errors / fail-closed drop | rules.yml change, unknown field | never "fix" by loosening rules — open DPO-reviewed contract change |
 | dbt build | failing test vs failing model | upstream drift, schema change | run `dbt build` locally with dev profile; check `_staging.yml` contract |

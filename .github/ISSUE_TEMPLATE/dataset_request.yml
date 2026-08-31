@@ -15,7 +15,7 @@ body:
       label: Purpose (RoPA linkage)
       description: >
         Why does this dataset exist and which RoPA purpose in
-        jol-m-compliance covers it? If no personal data is involved,
+        jolarca-compliance covers it? If no personal data is involved,
         state that explicitly.
     validations:
       required: true

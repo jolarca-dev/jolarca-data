@@ -1,4 +1,4 @@
-# jol-m-data — Data Platform Repository
+# jolarca-data — Data Platform Repository
 
 **Private** repository for the Journey of Life marketplace data function
 (`jol-m-*` fleet). Seed & reference data, the analytics warehouse (dbt),
@@ -19,12 +19,12 @@ and ML dataset governance live here.
 - **Seed & reference data** (`seed/`): the marketplace taxonomy
   (categories, attributes, translations LT/LV/EE/EN/RU), geo/tax
   references, and 100% synthetic fixtures — the knowledge spine that
-  `jol-m-marketplace` and demo environments load.
+  `jolarca` and demo environments load.
 - **Analytics warehouse** (`warehouse/`): dbt project; staging strips
   identifiers, marts serve finance (VAT OSS), marketplace, and
   compliance analytics. EU region only.
 - **Retention & anonymization as code** (`lifecycle/`): executes the
-  retention schedule whose policy text lives in `jol-m-compliance`.
+  retention schedule whose policy text lives in `jolarca-compliance`.
 
 ## Access tiers & data classification
 
@@ -42,13 +42,13 @@ Four tiers, handling rules in [governance/classification.md](governance/classifi
 | Role | Contact | Owns |
 |------|---------|------|
 | Data platform owner | TBD — fill on onboarding | `warehouse/`, `ingestion/`, `scripts/` |
-| DPO (`jol-m-compliance`) | TBD | anything touching RESTRICTED data; CODEOWNERS gate (§3) |
+| DPO (`jolarca-compliance`) | TBD | anything touching RESTRICTED data; CODEOWNERS gate (§3) |
 | Marketplace product owner | TBD | `seed/taxonomy/`, `seed/fixtures/` |
 | Finance | TBD | `warehouse/models/marts/finance/`, `seed/tax/` |
 
 Cross-repo boundaries: retention **policy** and GDPR evidence (RoPA,
-DSAR logs) live in `jol-m-compliance`; this repo executes the policy as
-code. Legal texts and glossaries sync from `jol-m-legal`
+DSAR logs) live in `jolarca-compliance`; this repo executes the policy as
+code. Legal texts and glossaries sync from `jolarca-legal`
 (`ml/translation-memory/`). Production backups are **not** here —
 analytics is rebuildable from sources ([docs/runbooks/restore-analytics.md](docs/runbooks/restore-analytics.md)).
 

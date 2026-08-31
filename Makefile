@@ -1,4 +1,4 @@
-# jol-m-data — data operator hygiene targets.
+# jolarca-data — data operator hygiene targets.
 # Credential-free targets (check, seed-validate) must always pass locally.
 # Warehouse targets (dbt-build, quality) require .envrc vars — ADR-0002.
 

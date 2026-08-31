@@ -1,9 +1,9 @@
 # postgres_extract — read replica → pseudonymized landing
 
-Batch/CDC extraction from the `jol-m-marketplace` **read replica**.
+Batch/CDC extraction from the `jolarca` **read replica**.
 
 - Connection: read-only role, table-scoped grants (see
-  `extract-role.sql` — applied by `jol-m-infrastructure`, not here).
+  `extract-role.sql` — applied by `jolarca-infrastructure`, not here).
 - Cadence: nightly batch at scaffold; CDC upgrade path is documented
   when order volume justifies it.
 - Output goes through `../pseudonymizer/` before any landing write.

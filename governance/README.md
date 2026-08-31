@@ -11,7 +11,7 @@ blocks it (`scripts/catalog-lint.py` — no orphan datasets).
 | Data platform owner | Catalog accuracy, pipeline ownership, this repo |
 | Business owner (per dataset) | Purpose, classification, retention decisions |
 | Technical steward (per dataset) | Schema, quality, lineage maintenance |
-| DPO (`jol-m-compliance`) | RESTRICTED tier approval, retention classes, RoPA linkage |
+| DPO (`jolarca-compliance`) | RESTRICTED tier approval, retention classes, RoPA linkage |
 
 ## Review cadence
 

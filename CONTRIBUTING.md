@@ -1,4 +1,4 @@
-# Contributing — jol-m-data
+# Contributing — jolarca-data
 
 Data engineers, analysts, and the DPO. Every merge here changes either
 the dataset governance record or the pipeline that transforms personal
@@ -13,7 +13,7 @@ notable changes land in `CHANGELOG.md`.
 2. **Deterministic & versioned.** Seed files are committed artifacts
    with schema validation (`seed/validators/`); CI blocks malformed
    taxonomy. Changes to taxonomy are MINOR/MAJOR changes for consumers
-   (`jol-m-marketplace`) — describe impact in the PR.
+   (`jolarca`) — describe impact in the PR.
 3. **Translations are complete.** Category names exist in lt/lv/et/en
    (ru reserved); a missing translation is a CI failure, not a TODO.
 
@@ -38,7 +38,7 @@ notable changes land in `CHANGELOG.md`.
   tier, a RoPA purpose reference, and a retention class. `catalog-lint`
   blocks orphans.
 - Retention class changes require DPO review (CODEOWNERS routes it).
-- Policy text lives in `jol-m-compliance`; this repo implements it.
+- Policy text lives in `jolarca-compliance`; this repo implements it.
 
 ## Personal data — absolute rules
 

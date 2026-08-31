@@ -2,12 +2,12 @@
 
 **Key property: analytics is rebuildable from sources.** Production
 backups are NOT in this repository (they live in
-`jol-m-infrastructure`); a full warehouse loss is a rebuild, not a
+`jolarca-infrastructure`); a full warehouse loss is a rebuild, not a
 restore-from-backup.
 
 ## Rebuild procedure
 
-1. Provision an empty EU-region Postgres (`jol-m-infrastructure`
+1. Provision an empty EU-region Postgres (`jolarca-infrastructure`
    change management); apply encryption and access baseline.
 2. Provide env vars per `.envrc.example`; write `warehouse/profiles.yml`
    from `profiles.yml.example`.

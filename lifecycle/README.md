@@ -1,20 +1,20 @@
 # Lifecycle — retention & anonymization machinery
 
 **This code executes the retention schedule; the policy text lives in
-`jol-m-compliance`.** Nothing here re-states policy — every job points
+`jolarca-compliance`.** Nothing here re-states policy — every job points
 at the retention class it implements (`governance/retention-map.md`).
 
 | Path | Content |
 |------|---------|
 | `anonymization/` | Erasure-support jobs: verify product-DB anonymization propagated to the warehouse |
-| `retention-jobs/` | Scheduled purge/anonymize per retention-map (warehouse only; production tables are owned by jol-m-marketplace) |
+| `retention-jobs/` | Scheduled purge/anonymize per retention-map (warehouse only; production tables are owned by jolarca) |
 | `legal-hold/` | Hold flags that suspend retention jobs for specific entities (counsel-controlled) |
 | `verification/` | Post-run proofs: sampled re-identification attempts must fail (adversarial test) |
 
 ## Hard rules
 
 1. **Scope: warehouse only.** Production erasure happens in
-   `jol-m-marketplace`; this machinery verifies propagation and purges
+   `jolarca`; this machinery verifies propagation and purges
    analytics copies.
 2. **Legal holds suspend, never delete.** A hold pauses the applicable
    retention job for the held entities; release is counsel/DPO

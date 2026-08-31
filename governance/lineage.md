@@ -8,7 +8,7 @@ cleartext identifiers** (ADR-0001).
 
 ```mermaid
 flowchart LR
-  subgraph Production [jol-m-marketplace production]
+  subgraph Production [jolarca production]
     A[(orders table)] --> B[(read replica)]
   end
   B -->|"read-only role\nleast privilege"| C[pseudonymizer\nhash buyer/seller IDs]
@@ -46,7 +46,7 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  M[jol-m-marketplace: DSAR erasure executed] --> V[lifecycle/anonymization verify job]
+  M[jolarca: DSAR erasure executed] --> V[lifecycle/anonymization verify job]
   V --> W{warehouse rows for hashed subject gone/anonymized?}
   W -->|yes| P[lifecycle/verification: proof recorded]
   W -->|no| I[pii_incident issue → DPO]

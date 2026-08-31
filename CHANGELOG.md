@@ -1,4 +1,4 @@
-# Changelog — jol-m-data
+# Changelog — jolarca-data
 
 All notable changes to this data-platform repository are documented
 here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);

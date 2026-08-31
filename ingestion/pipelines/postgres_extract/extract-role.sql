@@ -1,5 +1,5 @@
 -- extract-role.sql — least-privilege extract role for the READ REPLICA.
--- Executed by jol-m-infrastructure (change management applies); kept
+-- Executed by jolarca-infrastructure (change management applies); kept
 -- here as the source of truth for what analytics is granted.
 
 create role jol_extract login;

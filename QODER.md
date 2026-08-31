@@ -67,7 +67,7 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 ---
 
-## Project-Specific Guidelines — jol-m-data
+## Project-Specific Guidelines — jolarca-data
 
 This repository governs pseudonymous analytics over marketplace data;
 every merge either changes the governance record or transforms data that
@@ -89,7 +89,7 @@ AI-assisted changes:
   `lifecycle/` are critical-risk: require DPO review and
   `make anonymize-verify` evidence before merge.
 - Retention jobs execute the schedule defined in
-  `governance/retention-map.md`; policy text lives in `jol-m-compliance`
+  `governance/retention-map.md`; policy text lives in `jolarca-compliance`
   — do not duplicate or reword policy here.
 - Legal holds suspend retention; they never delete.
 

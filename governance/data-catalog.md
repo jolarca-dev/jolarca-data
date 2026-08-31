@@ -7,7 +7,7 @@ them consistent and blocks orphans.
 
 Tiers per [classification.md](classification.md); retention classes per
 [retention-map.md](retention-map.md); RoPA purposes live in
-`jol-m-compliance` (referenced by id, never restated here).
+`jolarca-compliance` (referenced by id, never restated here).
 
 | dataset_id | Description | Business owner | Technical steward | Classification | RoPA purpose | Retention class |
 |------------|-------------|----------------|-------------------|----------------|--------------|-----------------|

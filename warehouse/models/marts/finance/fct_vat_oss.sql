@@ -1,7 +1,7 @@
 -- fct_vat_oss — VAT OSS reporting support: net/VAT amounts per
 -- destination country per quarter per rate. CONFIDENTIAL; statutory
 -- retention (governance/retention-map.md). Not a filing — supports the
--- filing prepared by finance/jol-m-compliance.
+-- filing prepared by finance/jolarca-compliance.
 with orders as (
 
     select * from {{ ref('fct_orders') }}

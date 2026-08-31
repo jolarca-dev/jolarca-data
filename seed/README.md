@@ -8,12 +8,12 @@ Doctrine:
    MUST produce new identities.
 2. **Deterministic & versioned.** Seed files are committed artifacts.
    Every file is schema-validated (`validators/`); CI blocks malformed
-   taxonomy. Consumers (`jol-m-marketplace`, demo environments) load
+   taxonomy. Consumers (`jolarca`, demo environments) load
    these files via their own load scripts.
 3. **Translations are complete.** Category names exist for lt/lv/et/en;
    ru is reserved. A missing translation is a CI failure, not a TODO.
 4. **Taxonomy changes are consumer-visible.** A category code change is
-   a MAJOR change for `jol-m-marketplace`; declare impact in the PR.
+   a MAJOR change for `jolarca`; declare impact in the PR.
 
 ## Layout
 

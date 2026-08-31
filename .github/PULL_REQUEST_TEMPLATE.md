@@ -5,7 +5,7 @@
 ## Dataset checklist (mandatory — CONTRIBUTING.md)
 
 - Data classification: [ ] PUBLIC  [ ] INTERNAL  [ ] CONFIDENTIAL  [ ] RESTRICTED
-- RoPA purpose reference: <!-- jol-m-compliance RoPA entry id, or "n/a (no personal data)" -->
+- RoPA purpose reference: <!-- jolarca-compliance RoPA entry id, or "n/a (no personal data)" -->
 - Retention class: <!-- per governance/retention-map.md, or "n/a" -->
 - Catalog entry + ownership row added for new datasets: [ ] yes / n/a
 - No personal data committed (fixtures are synthetic): [ ] confirmed

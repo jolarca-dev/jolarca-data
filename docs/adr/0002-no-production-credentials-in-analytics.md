@@ -30,8 +30,8 @@ practice require separation.
 ## Consequences
 
 - Analytics cannot "just fix" production data incidents — correct
-  behavior; production changes route through `jol-m-marketplace`
+  behavior; production changes route through `jolarca`
   change management.
 - Two credential custody chains exist (infra-owned); rotation follows
-  `jol-m-infrastructure` runbooks.
+  `jolarca-infrastructure` runbooks.
 - A leaked analytics credential degrades to analytics scope only.

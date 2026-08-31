@@ -1,4 +1,4 @@
-# Architecture — jol-m-data
+# Architecture — jolarca-data
 
 Template-inherited baseline, extended with the platform data flow.
 
@@ -6,16 +6,16 @@ Template-inherited baseline, extended with the platform data flow.
 
 | Repo | Relationship |
 |------|--------------|
-| `jol-m-marketplace` | Source of truth (production); this repo reads a pseudonymized copy, never writes |
-| `jol-m-compliance` | Retention policy, RoPA, GDPR evidence; this repo executes policy as code |
-| `jol-m-legal` | Legal glossary (translation-memory sync), DSA transparency data requests |
-| `jol-m-infrastructure` | Warehouse hosting, secrets, network planes; runs extract-role grants |
+| `jolarca` | Source of truth (production); this repo reads a pseudonymized copy, never writes |
+| `jolarca-compliance` | Retention policy, RoPA, GDPR evidence; this repo executes policy as code |
+| `jolarca-legal` | Legal glossary (translation-memory sync), DSA transparency data requests |
+| `jolarca-infrastructure` | Warehouse hosting, secrets, network planes; runs extract-role grants |
 
 ## Data flow (prod → pseudonymized → marts)
 
 ```mermaid
 flowchart LR
-  subgraph PROD [jol-m-marketplace production]
+  subgraph PROD [jolarca production]
     P[(orders/products/users)] --> R[(read replica)]
   end
   subgraph BOUNDARY [pseudonymization boundary — ADR-0001]
@@ -54,4 +54,4 @@ warehouse, keys held in the product boundary).
 2. No production credentials in analytics (ADR-0002).
 3. Compliance marts are aggregates only.
 4. Analytics is rebuildable from sources; production backups live in
-   `jol-m-infrastructure`, not here.
+   `jolarca-infrastructure`, not here.

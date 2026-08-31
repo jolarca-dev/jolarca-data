@@ -9,5 +9,5 @@ on any EU VAT directive change.
 - Last validated against Stripe Tax: 2026-08-01 (scaffold baseline —
   re-validate before first production use).
 - Reduced rate applies to `books` (per national schedules).
-- OSS threshold/registration data lives in `jol-m-compliance` tax
+- OSS threshold/registration data lives in `jolarca-compliance` tax
   records, not here.

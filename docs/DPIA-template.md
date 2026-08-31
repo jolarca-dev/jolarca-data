@@ -9,7 +9,7 @@ the completed DPIA to the change request BEFORE implementation.
 
 ## 1. Processing description
 
-- Purpose of processing (RoPA reference in `jol-m-compliance`):
+- Purpose of processing (RoPA reference in `jolarca-compliance`):
 - Categories of data subjects (buyers/sellers/visitors):
 - Categories of personal data (flag special categories Art. 9):
 - Data flows (source → pseudonymizer → landing → models → consumers):
@@ -32,7 +32,7 @@ the completed DPIA to the change request BEFORE implementation.
 
 ## 4. Technical & organizational measures
 
-- Encryption at rest / in transit (keys per `jol-m-infrastructure` custody):
+- Encryption at rest / in transit (keys per `jolarca-infrastructure` custody):
 - Access control (warehouse roles, review cadence):
 - Residency: EU-only (no cross-region replication):
 - Breach detection & notification path (72h, Art. 33 — DPO owns the clock):

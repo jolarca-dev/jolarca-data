@@ -7,7 +7,7 @@ version: 2
 sources:
   - name: jol_marketplace_raw
     description: >
-      Pseudonymized landing from the jol-m-marketplace read replica via
+      Pseudonymized landing from the jolarca read replica via
       ingestion/pipelines/postgres_extract + pseudonymizer. Read-only
       role, least privilege.
     schema: raw

@@ -7,7 +7,7 @@ license basis, and a PII-free certification before it may be consumed.
 |------|---------|
 | `embeddings/` | Product-description embedding build jobs (pgvector export format) |
 | `evaluation/` | Search relevance eval sets (synthetic + human-labeled, anonymized) |
-| `translation-memory/` | Domain glossary pairs lt/lv/et/en (legal terms sync with jol-m-legal) |
+| `translation-memory/` | Domain glossary pairs lt/lv/et/en (legal terms sync with jolarca-legal) |
 
 ## Governance rules (apply to every artifact under ml/)
 
@@ -17,7 +17,7 @@ license basis, and a PII-free certification before it may be consumed.
    ml_translation_memory).
 2. **License basis declared.** Product descriptions are licensed by
    sellers under the seller agreement; eval labels by contributors
-   under the CLA (`jol-m-legal/intellectual-property/copyright/`).
+   under the CLA (`jolarca-legal/intellectual-property/copyright/`).
    No scraped external corpora.
 3. **PII-free certification.** Builds run on pseudonymous warehouse
    marts only; the pii-scan gate applies to committed eval data.

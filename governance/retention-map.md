@@ -1,7 +1,7 @@
 # Retention Map — dataset → retention class → enforcement
 
 This is the enforcement-side view of the retention schedule. **Policy
-text lives in `jol-m-compliance` (retention schedule)**; this map binds
+text lives in `jolarca-compliance` (retention schedule)**; this map binds
 each dataset in [data-catalog.md](data-catalog.md) to a class and the
 mechanism that executes it. Changes require DPO review (CODEOWNERS).
 
@@ -42,7 +42,7 @@ mechanism that executes it. Changes require DPO review (CODEOWNERS).
    (`lifecycle/legal-hold/`) pauses the job for the affected entities;
    counsel-controlled release.
 2. **Erasure propagates.** When the product DB anonymizes a subject
-   (`jol-m-marketplace`), `lifecycle/anonymization/` verifies the
+   (`jolarca`), `lifecycle/anonymization/` verifies the
    warehouse followed — verification is evidence, kept statutory.
 3. **Proofs are sampled.** Post-run proofs + adversarial
    re-identification sampling live in `lifecycle/verification/`.

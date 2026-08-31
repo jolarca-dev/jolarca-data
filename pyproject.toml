@@ -4,7 +4,7 @@
 # ranges — bump via dependabot review, never ad hoc.
 
 [project]
-name = "jol-m-data-tooling"
+name = "jolarca-data-tooling"
 version = "0.1.0"
 description = "Data platform tooling: dbt warehouse, sqlfluff, data quality, seed validators, governance gates."
 requires-python = ">=3.11"

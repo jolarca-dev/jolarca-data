@@ -1,6 +1,6 @@
 # Anonymization — erasure propagation verification
 
-When `jol-m-marketplace` executes a DSAR erasure (subject anonymized in
+When `jolarca` executes a DSAR erasure (subject anonymized in
 the product DB), the warehouse must follow: every model keyed by that
 subject's pseudonymous key must be purged or re-aggregated so that no
 row attributable to the subject remains.

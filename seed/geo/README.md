@@ -3,7 +3,7 @@
 Reference sets for checkout/delivery flows and analytics geo
 dimensions. Content here is a **representative subset**; the full
 administrative lists are loaded from official open-data sources by
-`jol-m-marketplace` — this seed provides the stable code scheme and
+`jolarca` — this seed provides the stable code scheme and
 demo coverage.
 
 | File | Content |

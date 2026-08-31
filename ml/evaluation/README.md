@@ -17,4 +17,4 @@ Relevance judgments for the semantic search stack. Two families:
 - PII gate applies: committed eval files run through the same scanners
   as seed data (`make check`).
 - Label governance: contributors covered by the CLA
-  (`jol-m-legal/intellectual-property/copyright/`).
+  (`jolarca-legal/intellectual-property/copyright/`).
