@@ -1,7 +1,7 @@
 # jolarca-data — Data Platform Repository
 
 **Private** repository for the Journey of Life marketplace data function
-(`jol-m-*` fleet). Seed & reference data, the analytics warehouse (dbt),
+(`jolarca-*` fleet). Seed & reference data, the analytics warehouse (dbt),
 ingestion contracts, data quality, retention machinery, synthetic data,
 and ML dataset governance live here.
 
