@@ -1,5 +1,5 @@
 # ci.yml — inherited baseline gate: lint + validate everything committed.
-# Job name MUST stay "ci": branch protection requires the "ci" status check.
+# Job name MUST stay "ci": the ci status check will be required when branch protection is enabled.
 name: ci
 on:
   pull_request:

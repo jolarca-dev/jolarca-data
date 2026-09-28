@@ -3,7 +3,7 @@
 This is the enforcement-side view of the retention schedule. **Policy
 text lives in `jolarca-compliance` (retention schedule)**; this map binds
 each dataset in [data-catalog.md](data-catalog.md) to a class and the
-mechanism that executes it. Changes require DPO review (CODEOWNERS).
+mechanism that executes it. Changes require DPO review (CODEOWNERS will enforce when enabled).
 
 ## Retention classes
 

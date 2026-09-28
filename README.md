@@ -42,7 +42,7 @@ Four tiers, handling rules in [governance/classification.md](governance/classifi
 | Role | Contact | Owns |
 |------|---------|------|
 | Data platform owner | TBD — fill on onboarding | `warehouse/`, `ingestion/`, `scripts/` |
-| DPO (`jolarca-compliance`) | TBD | anything touching RESTRICTED data; CODEOWNERS gate (§3) |
+| DPO (`jolarca-compliance`) | TBD | anything touching RESTRICTED data; CODEOWNERS will gate (§3) when enabled |
 | Marketplace product owner | TBD | `seed/taxonomy/`, `seed/fixtures/` |
 | Finance | TBD | `warehouse/models/marts/finance/`, `seed/tax/` |
 
