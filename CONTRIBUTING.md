@@ -53,10 +53,8 @@ notable changes land in `CHANGELOG.md`.
 1. **Issue first.** `dataset_request` for new datasets, `pii_incident`
    for PII findings (never put the data itself in the issue).
 2. **Branch per change.** One dataset/pipeline concern per PR.
-3. **CI is a merge gate.** `ci`, `compliance-check`, `dbt-ci` (parse +
-   slim build + tests) must be green.
-4. **CODEOWNERS routing is binding.** DPO review on anything touching
-   RESTRICTED paths, lifecycle jobs, and compliance marts.
+3. **CI is the merge gate (when branch protection is enabled).** `ci`, `compliance-check`, `dbt-ci` (parse + slim build + tests) must be green. Currently advisory until GitHub Team is purchased and branch protection is configured.
+4. **CODEOWNERS routing is advisory (currently).** DPO review on anything touching RESTRICTED paths, lifecycle jobs, and compliance marts. `require_code_owner_reviews` is disabled until teams are created and GitHub Pro is purchased.
 
 **Solo-era operation (current):** the org operates with a single data
 operator, so human review gates ride on automated checks + CODEOWNERS

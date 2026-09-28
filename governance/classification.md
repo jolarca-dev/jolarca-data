@@ -2,7 +2,7 @@
 
 Every dataset in [data-catalog.md](data-catalog.md) carries exactly one
 tier. Tier changes are critical-risk changes: DPO approval required,
-CODEOWNERS routes it.
+CODEOWNERS will route it when enabled.
 
 ## Tiers
 
