@@ -41,6 +41,24 @@ jobs:
       - name: Retention machinery declares its policy source
         run: grep -q "jolarca-compliance" lifecycle/README.md
 
+      - name: CODEOWNERS owners resolve
+        run: |
+          # Extract owners from non-comment lines; fail if any don't match whitelist.
+          # Whitelist: @JourneyOfLife (sole operator) or @jolarca-dev/* teams.
+          # GitHub's CODEOWNERS parser will also validate at PR time, but this
+          # catches drift before a PR is opened.
+          OWNERS=$(grep -vE '^\s*#|^\s*$' .github/CODEOWNERS | grep -oE '@[A-Za-z0-9_-]+(/[A-Za-z0-9_-]+)?' | tr -d '@' | sort -u)
+          for o in $OWNERS; do
+            if [[ "$o" == "JourneyOfLife" ]]; then
+              echo "  OK  $o (sole operator)"
+            elif [[ "$o" == jolarca-dev/* ]]; then
+              echo "  OK  $o (team — will be validated by GitHub at PR time)"
+            else
+              echo "  FAIL  $o (not in whitelist: must be @JourneyOfLife or @jolarca-dev/*)"
+              exit 1
+            fi
+          done
+
       - name: ADR numbering continuous
         run: |
           ls docs/adr/[0-9]*.md 2>/dev/null | sed 's/.*\///;s/-.*//' | awk 'NR>1 && $1!=p+1 {print "gap in ADR numbering"; exit 1} {p=$1}'
